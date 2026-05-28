@@ -77,17 +77,21 @@ h1, h2, h3, h4, h5, h6 {
   height: 100%;
   pointer-events: none;
   z-index: -1;
-  background: radial-gradient(ellipse at bottom, #070f2b 0%, #020617 100%);
+  background: transparent;
   overflow: hidden;
 }
 
-.stars {
+.stars, .stars-medium {
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
+  right: -50%;
+  bottom: -50%;
   background: transparent;
+  background-repeat: repeat;
+}
+
+.stars {
   background-image: 
     radial-gradient(1px 1px at 20px 30px, #eee, rgba(0,0,0,0)),
     radial-gradient(1px 1px at 40px 70px, #fff, rgba(0,0,0,0)),
@@ -95,10 +99,20 @@ h1, h2, h3, h4, h5, h6 {
     radial-gradient(2px 2px at 90px 40px, #fff, rgba(0,0,0,0)),
     radial-gradient(1.5px 1.5px at 130px 80px, #fff, rgba(0,0,0,0)),
     radial-gradient(1px 1px at 160px 120px, #ddd, rgba(0,0,0,0));
-  background-repeat: repeat;
   background-size: 200px 200px;
-  opacity: 0.4;
-  animation: twinkling 8s infinite alternate;
+  opacity: 0.6;
+  animation: twinkling 8s infinite alternate, pan-stars 100s linear infinite;
+}
+
+.stars-medium {
+  background-image: 
+    radial-gradient(2px 2px at 30px 140px, #fff, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 110px 190px, #ddd, rgba(0,0,0,0)),
+    radial-gradient(1.5px 1.5px at 180px 10px, #eee, rgba(0,0,0,0)),
+    radial-gradient(2.5px 2.5px at 150px 150px, #fff, rgba(0,0,0,0));
+  background-size: 250px 250px;
+  opacity: 0.7;
+  animation: twinkling 12s infinite alternate-reverse, pan-stars 150s linear infinite;
 }
 
 .nebula {
@@ -106,12 +120,13 @@ h1, h2, h3, h4, h5, h6 {
   width: 600px;
   height: 600px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(147, 51, 234, 0.1) 0%, rgba(0,0,0,0) 70%);
+  background: radial-gradient(circle, rgba(147, 51, 234, 0.2) 0%, rgba(0,0,0,0) 70%);
   top: -200px;
   right: -100px;
   pointer-events: none;
   z-index: -2;
   filter: blur(80px);
+  animation: pan-nebula 60s ease-in-out infinite;
 }
 
 .nebula-left {
@@ -119,18 +134,30 @@ h1, h2, h3, h4, h5, h6 {
   width: 800px;
   height: 800px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(79, 70, 229, 0.08) 0%, rgba(0,0,0,0) 70%);
+  background: radial-gradient(circle, rgba(79, 70, 229, 0.15) 0%, rgba(0,0,0,0) 70%);
   bottom: -300px;
   left: -200px;
   pointer-events: none;
   z-index: -2;
   filter: blur(100px);
+  animation: pan-nebula 90s ease-in-out infinite reverse;
 }
 
 /* Animations */
 @keyframes twinkling {
   0% { opacity: 0.3; }
   100% { opacity: 0.7; }
+}
+
+@keyframes pan-stars {
+  0% { transform: translateY(0) translateX(0); }
+  100% { transform: translateY(-50%) translateX(-25%); }
+}
+
+@keyframes pan-nebula {
+  0% { transform: scale(1) rotate(0deg); opacity: 0.6; }
+  50% { transform: scale(1.1) rotate(5deg); opacity: 0.8; }
+  100% { transform: scale(1) rotate(0deg); opacity: 0.6; }
 }
 
 @keyframes pulse-glow {
@@ -565,3 +592,53 @@ h1, h2, h3, h4, h5, h6 {
 .p-2 { padding: 2rem; }
 
 .hidden { display: none; }
+
+/* Video Background */
+.video-background-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.video-layer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  transition: opacity 2s ease-in-out;
+}
+
+.fade-in {
+  opacity: 1;
+  z-index: 2;
+}
+
+.fade-out {
+  opacity: 0;
+  z-index: 1;
+}
+
+.hidden-layer {
+  opacity: 0;
+  z-index: 0;
+  visibility: hidden;
+}
+
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(2, 6, 23, 0.3); /* Dark overlay lighter for better nebula visibility */
+  z-index: 3;
+}

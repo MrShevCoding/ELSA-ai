@@ -46,18 +46,18 @@ export default function AboutPage() {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "1.5rem" }}>
           
           <div style={{ border: "1px solid rgba(255,255,255,0.05)", borderRadius: "8px", padding: "1rem", background: "rgba(255,255,255,0.02)" }}>
-            <h4 style={{ color: "#fff", marginBottom: "0.25rem" }}>Lead Researcher</h4>
-            <p style={{ fontSize: "0.85rem", color: "var(--text-muted)" }}>Astrobiology & Rubric Modeling</p>
+            <h4 style={{ color: "#fff", marginBottom: "0.25rem" }}>Alex Shevkoplyas</h4>
+            <p style={{ fontSize: "0.85rem", color: "var(--text-muted)" }}>Researched planetary habitability and contributed to the scientific modeling of habitable conditions.</p>
           </div>
 
           <div style={{ border: "1px solid rgba(255,255,255,0.05)", borderRadius: "8px", padding: "1rem", background: "rgba(255,255,255,0.02)" }}>
-            <h4 style={{ color: "#fff", marginBottom: "0.25rem" }}>Lead Developer</h4>
-            <p style={{ fontSize: "0.85rem", color: "var(--text-muted)" }}>Next.js, UI/UX & API Integrations</p>
+            <h4 style={{ color: "#fff", marginBottom: "0.25rem" }}>Aydan Jia</h4>
+            <p style={{ fontSize: "0.85rem", color: "var(--text-muted)" }}>Developed the AI model and researched sustainability aspects of exoplanetary environments.</p>
           </div>
 
           <div style={{ border: "1px solid rgba(255,255,255,0.05)", borderRadius: "8px", padding: "1rem", background: "rgba(255,255,255,0.02)" }}>
-            <h4 style={{ color: "#fff", marginBottom: "0.25rem" }}>Project Mentor</h4>
-            <p style={{ fontSize: "0.85rem", color: "var(--text-muted)" }}>Scientific Validity Advisor</p>
+            <h4 style={{ color: "#fff", marginBottom: "0.25rem" }}>Daniel Simakov</h4>
+            <p style={{ fontSize: "0.85rem", color: "var(--text-muted)" }}>Conducted additional habitability research and built the physical models for planetary simulations.</p>
           </div>
 
         </div>

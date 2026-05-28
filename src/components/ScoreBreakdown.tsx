@@ -9,24 +9,32 @@ interface ScoreBreakdownProps {
 
 export default function ScoreBreakdown({ breakdown }: ScoreBreakdownProps) {
   const [widths, setWidths] = useState<Record<string, number>>({
-    atmosphericComposition: 0,
+    atmosphericPresence: 0,
+    surfaceSuitability: 0,
+    temperatureScore: 0,
     magneticField: 0,
     orbitalStability: 0,
     starQuality: 0,
     galacticSafety: 0,
     distanceScore: 0,
+    climateStability: 0,
+    systemArchitecture: 0,
   });
 
   useEffect(() => {
     // Animate widths from 0 to actual value when mounted
     const timer = setTimeout(() => {
       setWidths({
-        atmosphericComposition: breakdown.atmosphericComposition,
+        atmosphericPresence: breakdown.atmosphericPresence,
+        surfaceSuitability: breakdown.surfaceSuitability,
+        temperatureScore: breakdown.temperatureScore,
         magneticField: breakdown.magneticField,
         orbitalStability: breakdown.orbitalStability,
         starQuality: breakdown.starQuality,
         galacticSafety: breakdown.galacticSafety,
         distanceScore: breakdown.distanceScore,
+        climateStability: breakdown.climateStability,
+        systemArchitecture: breakdown.systemArchitecture,
       });
     }, 100);
 
@@ -35,34 +43,64 @@ export default function ScoreBreakdown({ breakdown }: ScoreBreakdownProps) {
 
   const categories = [
     {
-      key: "atmosphericComposition",
-      name: "Atmospheric Composition",
-      desc: "Estimated gas composition, thickness, and pressure suitability",
+      key: "atmosphericPresence",
+      name: "Atmospheric Presence",
+      desc: "Detected gases: O₂, N₂, H₂O, CO₂ composition analysis",
+      weight: "20%",
+    },
+    {
+      key: "temperatureScore",
+      name: "Temperature Suitability",
+      desc: "Equilibrium temperature relative to habitable zone (ideal ~280K)",
+      weight: "15%",
+    },
+    {
+      key: "surfaceSuitability",
+      name: "Surface & Size Suitability",
+      desc: "Planet radius and mass relative to Earth (ideal ~1.0×)",
+      weight: "12%",
+    },
+    {
+      key: "climateStability",
+      name: "Climate Stability",
+      desc: "Seasonal extremity based on axial tilt (ideal ~23°)",
+      weight: "12%",
     },
     {
       key: "magneticField",
       name: "Magnetic Field Shielding",
       desc: "Potential dynamo protection from stellar winds and flares",
+      weight: "10%",
+    },
+    {
+      key: "starQuality",
+      name: "Star Quality & Age",
+      desc: "Luminosity, stability, and longevity of the host star",
+      weight: "10%",
     },
     {
       key: "orbitalStability",
       name: "Orbital Stability",
       desc: "Yearly mechanics, temperature variability, and rotation lock risks",
-    },
-    {
-      key: "starQuality",
-      name: "Star Quality",
-      desc: "Luminosity, stability, and longevity of the host star",
+      weight: "7%",
     },
     {
       key: "galacticSafety",
       name: "Galactic Safety",
       desc: "Positioning relative to dangerous supernovae and cosmic threats",
+      weight: "7%",
+    },
+    {
+      key: "systemArchitecture",
+      name: "System Architecture",
+      desc: "Stability bonuses from moons and gas giant shields",
+      weight: "4%",
     },
     {
       key: "distanceScore",
       name: "Distance from Earth",
       desc: "Travel and signal index based on light-year distance",
+      weight: "3%",
     },
   ];
 
@@ -84,7 +122,10 @@ export default function ScoreBreakdown({ breakdown }: ScoreBreakdownProps) {
                   {cat.desc}
                 </span>
               </div>
-              <span style={{ fontWeight: 600, color: "var(--accent-cyan)" }}>{val}%</span>
+              <div style={{ display: "flex", alignItems: "baseline", gap: "0.4rem" }}>
+                <span style={{ fontSize: "0.6rem", color: "var(--text-dark)" }}>{cat.weight}</span>
+                <span style={{ fontWeight: 600, color: "var(--accent-cyan)" }}>{val}%</span>
+              </div>
             </div>
             <div className="breakdown-bar-bg">
               <div 

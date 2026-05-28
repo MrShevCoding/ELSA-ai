@@ -104,27 +104,43 @@ export default function BatchResultsTable({ results }: BatchResultsTableProps) {
                               </h4>
                               <div style={{ display: "flex", flexDirection: "column", gap: "0.4rem", fontSize: "0.8rem" }}>
                                 <div className="flex-between">
-                                  <span>Atmospheric Composition:</span>
-                                  <span style={{ fontWeight: 600 }}>{res.breakdown.atmosphericComposition}%</span>
+                                  <span>Atmospheric Presence (20%):</span>
+                                  <span style={{ fontWeight: 600 }}>{res.breakdown.atmosphericPresence}%</span>
                                 </div>
                                 <div className="flex-between">
-                                  <span>Magnetic Field Shielding:</span>
+                                  <span>Temperature Suitability (15%):</span>
+                                  <span style={{ fontWeight: 600 }}>{res.breakdown.temperatureScore}%</span>
+                                </div>
+                                <div className="flex-between">
+                                  <span>Surface Suitability (12%):</span>
+                                  <span style={{ fontWeight: 600 }}>{res.breakdown.surfaceSuitability}%</span>
+                                </div>
+                                <div className="flex-between">
+                                  <span>Climate Stability (12%):</span>
+                                  <span style={{ fontWeight: 600 }}>{res.breakdown.climateStability}%</span>
+                                </div>
+                                <div className="flex-between">
+                                  <span>Magnetic Field Potential (10%):</span>
                                   <span style={{ fontWeight: 600 }}>{res.breakdown.magneticField}%</span>
                                 </div>
                                 <div className="flex-between">
-                                  <span>Orbital Stability:</span>
-                                  <span style={{ fontWeight: 600 }}>{res.breakdown.orbitalStability}%</span>
-                                </div>
-                                <div className="flex-between">
-                                  <span>Star Quality:</span>
+                                  <span>Star Quality & Age (10%):</span>
                                   <span style={{ fontWeight: 600 }}>{res.breakdown.starQuality}%</span>
                                 </div>
                                 <div className="flex-between">
-                                  <span>Galactic Safety:</span>
+                                  <span>Orbital Stability (7%):</span>
+                                  <span style={{ fontWeight: 600 }}>{res.breakdown.orbitalStability}%</span>
+                                </div>
+                                <div className="flex-between">
+                                  <span>Galactic Safety (7%):</span>
                                   <span style={{ fontWeight: 600 }}>{res.breakdown.galacticSafety}%</span>
                                 </div>
                                 <div className="flex-between">
-                                  <span>Distance from Earth:</span>
+                                  <span>System Architecture (4%):</span>
+                                  <span style={{ fontWeight: 600 }}>{res.breakdown.systemArchitecture}%</span>
+                                </div>
+                                <div className="flex-between">
+                                  <span>Distance from Earth (3%):</span>
                                   <span style={{ fontWeight: 600 }}>{res.breakdown.distanceScore}%</span>
                                 </div>
                               </div>

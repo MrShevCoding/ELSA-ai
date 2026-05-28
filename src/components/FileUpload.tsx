@@ -69,6 +69,19 @@ export default function FileUpload({ onParsed, onError }: FileUploadProps) {
       const equilibriumTemp = parseFloat(String(row.equilibriumTemp || row.Temp || row.temp || row.temperature || 0));
       const distanceFromEarth = parseFloat(String(row.distanceFromEarth || row.distance || row.Distance || 0));
 
+      // Advanced metrics
+      const hasMoon = row.hasMoon === true || String(row.hasMoon).toLowerCase() === "true" || String(row.hasMoon) === "1";
+      const hasJupiterProtector = row.hasJupiterProtector === true || String(row.hasJupiterProtector).toLowerCase() === "true" || String(row.hasJupiterProtector) === "1";
+      const axialTilt = row.axialTilt !== undefined ? parseFloat(String(row.axialTilt)) : 23.4; // Default to Earth-like if unknown
+      
+      let systemType: "Single" | "Binary" | "Rogue" = "Single";
+      const sysTypeStr = String(row.systemType || "").toLowerCase();
+      if (sysTypeStr === "binary") systemType = "Binary";
+      if (sysTypeStr === "rogue") systemType = "Rogue";
+
+      const galacticDistance = row.galacticDistance !== undefined ? parseFloat(String(row.galacticDistance)) : 8.0;
+      const starAge = row.starAge !== undefined ? parseFloat(String(row.starAge)) : 4.5;
+
       if (!radius || !mass || !orbitalPeriod || !equilibriumTemp) {
         continue; // skip rows with missing numeric parameters
       }
@@ -81,6 +94,12 @@ export default function FileUpload({ onParsed, onError }: FileUploadProps) {
         starType: ["O", "B", "A", "F", "G", "K", "M"].includes(starType) ? starType : "G",
         equilibriumTemp,
         distanceFromEarth,
+        hasMoon,
+        hasJupiterProtector,
+        axialTilt,
+        systemType,
+        galacticDistance,
+        starAge,
       });
     }
 
@@ -184,7 +203,7 @@ LHS 1140 b,1.72,5.6,24.7,M,230,49
           </p>
         </div>
         <div style={{ fontSize: "0.7rem", color: "var(--text-dark)", marginTop: "0.5rem" }}>
-          Expected Headers: planetName, radius, mass, orbitalPeriod, starType, equilibriumTemp, distanceFromEarth
+          Expected Headers: planetName, radius, mass, orbitalPeriod, starType, equilibriumTemp, distanceFromEarth, hasMoon, hasJupiterProtector, axialTilt, systemType, galacticDistance, starAge
         </div>
       </div>
     </div>

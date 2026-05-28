@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
+
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import StarField from "@/components/StarField";
+import VideoBackground from "@/components/VideoBackground";
+import FirstVisitOverlay from "@/components/FirstVisitOverlay";
 
 export const metadata: Metadata = {
   title: "ELSA AI - ExoLife Score AI",
@@ -20,14 +23,16 @@ export default function RootLayout({
     <html lang="en">
       <body style={{ position: "relative", minHeight: "100vh" }}>
         <div className="space-container">
+          <VideoBackground />
           <StarField />
           <Navbar />
-          {children}
+          <FirstVisitOverlay />
+            {children}
           <footer className="footer">
             <div className="main-wrapper" style={{ padding: "1rem 2rem" }}>
               <p>&copy; {new Date().getFullYear()} ELSA AI — ExoLife Score AI. Developed for school/extracurricular science projects.</p>
               <p style={{ marginTop: "0.25rem", fontSize: "0.75rem", color: "var(--text-dark)" }}>
-                Data processing utilizes Anthropic Claude API for reasoning and Papa Parse for CSV parser engines.
+                Data processing utilizes Google Gemini API for reasoning and Papa Parse for CSV parser engines.
               </p>
             </div>
           </footer>

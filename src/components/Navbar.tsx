@@ -29,8 +29,8 @@ export default function Navbar() {
           </Link>
         </li>
         <li>
-          <Link href="/docs" className={isActive("/docs")}>
-            Methodology
+          <Link href="/credits" className={isActive("/credits")}>
+            Credits
           </Link>
         </li>
         <li>
